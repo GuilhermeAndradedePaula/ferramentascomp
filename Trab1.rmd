@@ -1,23 +1,5 @@
 ---
 title: "Trabalho 1"
-subtitle: "Normalização"
-author: "Guilherme Andrade de Paula"
-institute: "Universidade Federal Fluminense"
-date: "25/04/2021"
-knit: (function(input_file, encoding) {
-  out_dir <- 'trab-1';
-  rmarkdown::render(input_file,
-  encoding=encoding,
-  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
-output:
-  xaringan::moon_reader:
-    lib_dir: libs
-    nature:
-      highlightStyle: github
-      highlightLines: true
-      countIncrementalSlides: false
-    includes:
-     after_body: insert-logo.html
 ---
 
 # Exercício 1 - Normalização
