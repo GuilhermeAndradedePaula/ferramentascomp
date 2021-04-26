@@ -1,5 +1,18 @@
 ---
 title: "Trabalho 1"
+subtitle: "Normalização"
+author: "Guilherme Andrade de Paula"
+institute: "Universidade Federal Fluminense"
+date: "25/04/2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+     after_body: insert-logo.html
 ---
 
 # Exercício 1 - Normalização
