@@ -4,6 +4,11 @@ subtitle: "Normalização"
 author: "Guilherme Andrade de Paula"
 institute: "Universidade Federal Fluminense"
 date: "25/04/2021"
+knit: (function(input_file, encoding) {
+  out_dir <- 'trab-1';
+  rmarkdown::render(input_file,
+  encoding=encoding,
+  output_file=file.path(dirname(input_file), out_dir, 'index.html'))})
 output:
   xaringan::moon_reader:
     lib_dir: libs
