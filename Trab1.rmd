@@ -1,0 +1,81 @@
+---
+title: "Trabalho 1"
+subtitle: "Normalização"
+author: "Guilherme Andrade de Paula"
+institute: "Universidade Federal Fluminense"
+date: "25/04/2021"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+    includes:
+     after_body: insert-logo.html
+---
+
+# Exercício 1 - Normalização
+
+--
+
+Primeiro temos de *inputar* os dados no R
+
+--
+
+```{r, include=FALSE, cache=FALSE}
+knitr::read_chunk("trab1.R")
+```
+
+```{r, test-a}
+
+```
+
+--
+
+Data frame da matriz de decisão criado, agora podemos criar as 4 formulas de normalização no R
+
+---
+
+# As 4 normalizações
+
+--
+
+- $$\frac{a_{ij}}{max(a{ij})}$$
+
+--
+
+- $$\frac{a_{ij}-min(a_{ij})}{max(a_{ij})-min(a_{ij})}$$
+
+--
+
+- $$\frac{a_{ij}}{\sum_{}a_{ij}}$$
+
+--
+
+- $$\frac{a_{ij}}{\sqrt{\sum_{}a_{ij}^2}}$$
+
+---
+
+# ... em R
+
+```{r, test-b, echo=TRUE}
+
+```
+
+--
+
+com as funções de normalização criadas basta aplicar no data frame e ...
+
+---
+# Resultados
+
+```{r, test-c, echo=FALSE}
+
+```
+---
+class: inverse, center, middle
+
+# Obrigado!
+
+apresentado com [Xaringan](https://slides.yihui.org/xaringan/#1)
