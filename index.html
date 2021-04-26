@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Trabalho 1</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Guilherme Andrade de Paula" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Trabalho 1
+## Normalização
+### Guilherme Andrade de Paula
+### Universidade Federal Fluminense
+### 25/04/2021
+
+---
+
+
+# Exercício 1 - Normalização
+
+--
+
+Primeiro temos de *inputar* os dados no R
+
+--
+
+
+
+
+```r
+#md=Matriz de Decisão
+#help("data.frame")
+md &lt;- data.frame(iphone = c(7000,1,256,30,200),
+                 samsung = c(5000,24,128,18,320),
+                 xiaomi = c(1500,48,64,5,180), 
+                 row.names=c("custo","bateria","capacidade","camera","peso"))
+md &lt;- t.data.frame(md)
+md 
+```
+
+```
+##         custo bateria capacidade camera peso
+## iphone   7000       1        256     30  200
+## samsung  5000      24        128     18  320
+## xiaomi   1500      48         64      5  180
+```
+
+--
+
+Data frame da matriz de decisão criado, agora podemos criar as 4 formulas de normalização no R
+
+---
+
+# As 4 normalizações
+
+--
+
+- `$$\frac{a_{ij}}{max(a{ij})}$$`
+
+--
+
+- `$$\frac{a_{ij}-min(a_{ij})}{max(a_{ij})-min(a_{ij})}$$`
+
+--
+
+- `$$\frac{a_{ij}}{\sum_{}a_{ij}}$$`
+
+--
+
+- `$$\frac{a_{ij}}{\sqrt{\sum_{}a_{ij}^2}}$$`
+
+---
+
+# ... em R
+
+
+```r
+n1 &lt;- function(x) {
+  x/max(x)
+}
+n2 &lt;- function(x) {
+  (x-min(x))/(max(x)-min(x))
+}
+n3 &lt;- function(x) {
+  x/sum(x)
+}
+n4 &lt;- function(x) {
+  x/sqrt(sum(x^2))
+}
+```
+
+--
+
+com as funções de normalização criadas basta aplicar no data frame e ...
+
+---
+# Resultados
+
+
+```
+## [[1]]
+##             custo    bateria capacidade    camera   peso
+## iphone  1.0000000 0.02083333       1.00 1.0000000 0.6250
+## samsung 0.7142857 0.50000000       0.50 0.6000000 1.0000
+## xiaomi  0.2142857 1.00000000       0.25 0.1666667 0.5625
+## 
+## [[2]]
+##             custo   bateria capacidade camera      peso
+## iphone  1.0000000 0.0000000  1.0000000   1.00 0.1428571
+## samsung 0.6363636 0.4893617  0.3333333   0.52 1.0000000
+## xiaomi  0.0000000 1.0000000  0.0000000   0.00 0.0000000
+## 
+## [[3]]
+##             custo    bateria capacidade     camera      peso
+## iphone  0.5185185 0.01369863  0.5714286 0.56603774 0.2857143
+## samsung 0.3703704 0.32876712  0.2857143 0.33962264 0.4571429
+## xiaomi  0.1111111 0.65753425  0.1428571 0.09433962 0.2571429
+## 
+## [[4]]
+##             custo    bateria capacidade    camera      peso
+## iphone  0.8016377 0.01863067  0.8728716 0.8488678 0.4783649
+## samsung 0.5725983 0.44713597  0.4364358 0.5093207 0.7653838
+## xiaomi  0.1717795 0.89427195  0.2182179 0.1414780 0.4305284
+```
+---
+class: inverse, center, middle
+
+# Obrigado!
+
+apresentado com [Xaringan](https://slides.yihui.org/xaringan/#1)
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+<style>
+.logo {
+  background-image: url(ufflogo.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  width: 110px;
+  height: 128px;
+  z-index: 0;
+}
+</style>
+
+<script>
+document
+  .querySelectorAll(
+    '.remark-slide-content' +
+    ':not(.title-slide)' +
+    // add additional classes to exclude here, e.g.
+    // ':not(.inverse)' +
+    ':not(.hide-logo)'
+  )
+  .forEach(el => {
+    el.innerHTML += '<div class="logo"></div>';
+  });
+</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
